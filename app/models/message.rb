@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :user
-  validates :content, presence: true
+  belongs_to :conversation
+  validates :content, presence: true, allow_blank: false
   scope :for_display, -> { order(:created_at).last(50) }
 
   def mentions

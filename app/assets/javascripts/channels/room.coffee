@@ -7,8 +7,11 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     alert("You have a new mention") if data.mention
-    if data.message?
-      $('#messages-table').append data.message
+    if data.content?
+      conversation = $('#conversations-list').find("[data-conversation-id='" + data.conversation + "']")
+      conversation.find('.messages-list').find('ul').find('#messages').find('#messages-table').append '<div class="message">' +
+        '<div class="message-user">' + data.username + ":" + '</div>' +
+        '<div class="message-content">' + data.content + '</div>' + '</div>'
       scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
@@ -23,5 +26,4 @@ submit_message = () ->
       event.preventDefault()
 
 scroll_bottom = () ->
-  $('#messages').scrollTop($('#messages')[0].scrollHeight)
-
+  $('.messages-list').scrollTop($('.messages-list')[0].scrollHeight)
