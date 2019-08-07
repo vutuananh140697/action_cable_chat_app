@@ -10,20 +10,5 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     if data.content?
       conversation = $('#conversations-list').find("[data-conversation-id='" + data.conversation + "']")
       conversation.find('.messages-list').find('ul').find('#messages').find('#messages-table').append '<div class="message">' +
-        '<div class="message-user">' + data.username + ":" + '</div>' +
-        '<div class="message-content">' + data.content + '</div>' + '</div>'
-      scroll_bottom()
-
-$(document).on 'turbolinks:load', ->
-  submit_message()
-  scroll_bottom()
-
-submit_message = () ->
-  $('#message_content').on 'keydown', (event) ->
-    if event.keyCode is 13 && !event.shiftKey
-      $('input').click()
-      event.target.value = ""
-      event.preventDefault()
-
-scroll_bottom = () ->
-  $('.messages-list').scrollTop($('.messages-list')[0].scrollHeight)
+        '<div class="message-received">' + data.content + '</div>' + '</div>'
+      $('.messages-list').scrollTop($('.messages-list')[0].scrollHeight)

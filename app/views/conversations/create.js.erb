@@ -6,6 +6,8 @@ if (conversation.length !== 1) {
   conversation = conversations.find("[data-conversation-id='" + "<%= @conversation.id %>" + "']");
 }
 
+$('#conversations-list').find(".panel").not("[data-conversation-id='" + "<%= @conversation.id %>" + "']").parent().remove();
+
 conversation.find('.panel-body').show();
 
 var messages_list = conversation.find('.messages-list');
