@@ -1,8 +1,5 @@
 <div class="message">
-  <div class="message-user">
-    <%= message.user.username %>:
-  </div>
-  <div class="message-content">
+  <div class="<%= user.id == message.user_id ? "message-sent" : "message-received" %>">
     <%= sanitize markdown_to_html(message.content) %>
   </div>
 </div>

@@ -29,4 +29,12 @@
       messages_list.scrollTop(height);
     }
   });
+
+  $(document).on('keydown', function(event) {
+    if(event.keyCode == 13 && !event.shiftKey){
+      $('input').click();
+      event.target.value = "";
+      event.preventDefault();
+    }
+  });
 })();
