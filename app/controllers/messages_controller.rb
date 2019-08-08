@@ -19,7 +19,8 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast "room_channel_user_#{recipient_id}",
                                    content:  markdown_to_html(@message.content),
                                    username: @message.user.username,
-                                   conversation: @conversation.id
+                                   conversation: @conversation.id,
+                                   created_at: @message.message_time
 
       @message.mentions.each do |mention|
         ActionCable.server.broadcast "room_channel_user_#{mention.id}",

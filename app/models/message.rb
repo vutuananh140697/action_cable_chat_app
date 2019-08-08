@@ -9,4 +9,8 @@ class Message < ApplicationRecord
       User.find_by(username: username)
     end.compact
   end
+
+  def message_time
+    created_at.strftime("%l:%M %p")
+  end
 end
