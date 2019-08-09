@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  include ActionView::Helpers::AssetTagHelper
   before_action :logged_in_user
   before_action :get_messages
 
@@ -17,7 +18,7 @@ class MessagesController < ApplicationController
     if @message.save
       recipient_id = @conversation.opposed_user(current_user).id
       ActionCable.server.broadcast "room_channel_user_#{recipient_id}",
-                                   content:  markdown_to_html(@message.content),
+                                   content:  markdown_to_html(emojify(@message.content)),
                                    username: @message.user.username,
                                    conversation: @conversation.id,
                                    created_at: @message.message_time

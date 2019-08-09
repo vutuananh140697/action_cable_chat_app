@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails',                   '5.0.1'
 gem 'bcrypt',                  '3.1.11'
 gem 'bootstrap-sass'
+gem "gemoji"
 gem 'kramdown'
 gem 'kramdown-parser-gfm'
 gem 'faker',                   '1.6.6'
